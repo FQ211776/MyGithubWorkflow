@@ -7,6 +7,8 @@
 [credential]
 	helper = manager-core
 [core]
+    excludesfile = ~/.gitignore
+    editor = nvim
 	longpaths = true
 [tag]
 	forceSignAnnotated = true
