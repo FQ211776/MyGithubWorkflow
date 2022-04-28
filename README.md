@@ -1,0 +1,6 @@
+
+
+
+```powershell
+scoop install hub
+```
