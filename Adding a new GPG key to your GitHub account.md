@@ -99,6 +99,7 @@ C:\Users\USERNAME\AppData\Roaming\gnupg
 ```
 
 **[Direct link to Add my GPG Key to GitHub](https://github.com/settings/keys)**
+**[Direct link to Add my SSH Key to SourceHut](https://meta.sr.ht/keys)**
 
 
 **[Tutorial how to add my GPG Key to GitHub](https://help.github.com/articles/adding-a-new-gpg-key-to-your-github-account/)**
