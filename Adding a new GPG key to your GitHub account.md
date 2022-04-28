@@ -66,6 +66,8 @@ echo "test" >> test
 git add test
 git commit -m "test"
 git log --show-signature
+cd ..
+rm -rf test
 ```
 
 **Troubleshooting** :
