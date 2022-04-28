@@ -4,3 +4,11 @@
 	signingkey = ????
 [commit]
 	gpgsign = true
+[credential]
+	helper = manager-core
+[core]
+	longpaths = true
+[tag]
+	forceSignAnnotated = true
+[ghq]
+  root = ~/.ghq
