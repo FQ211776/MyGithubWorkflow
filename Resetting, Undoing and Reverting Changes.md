@@ -57,7 +57,25 @@ Example: Revert file.txt the way it was before the previous commit:
 ---
 
 ## **Undo commit** :
+No files in the working directory will be changed.
 
+The repository will be pointing to the previous commit.
 ```powershell
-
+git reset --soft HEAD~1
 ```
+
+## **Unstage changes** :
+I.e. un-add all added files:
+```powershell
+git reset --soft HEAD
+```
+
+## **Add changes to commit** :
+ust `add` new files and then run `git commit --amend`
+
+To add file `file1.txt` to the previous commit:
+```powershell
+git add file1.txt
+git commit --amend
+```
+This will open up the previous commit message in case you want to edit it or keep the same message.
