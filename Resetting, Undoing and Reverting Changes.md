@@ -56,4 +56,8 @@ Example: Revert file.txt the way it was before the previous commit:
 ```
 ---
 
+## **Undo commit** :
 
+```powershell
+
+```
