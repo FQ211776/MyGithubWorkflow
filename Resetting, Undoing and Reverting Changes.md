@@ -63,13 +63,13 @@ The repository will be pointing to the previous commit.
 ```powershell
 git reset --soft HEAD~1
 ```
-
+---
 ## **Unstage changes** :
 I.e. un-add all added files:
 ```powershell
 git reset --soft HEAD
 ```
-
+---
 ## **Add changes to commit** :
 ust `add` new files and then run `git commit --amend`
 
@@ -79,9 +79,25 @@ git add file1.txt
 git commit --amend
 ```
 This will open up the previous commit message in case you want to edit it or keep the same message.
+---
+## **Undo git add** :
+This is the same as unstaging changes in a file.
 
-## ** ** :
-
+To undo adding a file to a commit (but keep it tracked) use
 ```powershell
-
+git reset HEAD path/to/file.txt
 ```
+---
+## **Change commit message** :
+git commit --amend will open a text editor for you to change the last commit message
+```powershell
+git commit --amend
+```
+
+---
+## **Revert file to previous commit** :
+This is what you should do to reset one single file to the way it was in the previous commit:e
+```powershell
+git reset HEAD~1 -- path/to/file
+```
+Then you can re-add/re-commit it again into the repo's history.
