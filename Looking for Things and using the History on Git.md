@@ -13,3 +13,6 @@ Example: list all commits whose commit message contains text `"some text"`
 ```powershell
  git log --grep="some text"
 ```
+`git log -p`:
+
+`-p` modifier: include diffs in the output of log
