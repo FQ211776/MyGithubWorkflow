@@ -101,3 +101,6 @@ This is what you should do to reset one single file to the way it was in the pre
 git reset HEAD~1 -- path/to/file
 ```
 Then you can re-add/re-commit it again into the repo's history.
+
+
+https://queirozf.com/entries/git-examples-resetting-undoing-and-reverting-changes
