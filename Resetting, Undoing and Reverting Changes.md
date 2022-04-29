@@ -104,3 +104,5 @@ Then you can re-add/re-commit it again into the repo's history.
 
 
 https://queirozf.com/entries/git-examples-resetting-undoing-and-reverting-changes
+
+https://queirozf.com/entries/create-a-remote-git-repository-and-push-stuff-to-it
