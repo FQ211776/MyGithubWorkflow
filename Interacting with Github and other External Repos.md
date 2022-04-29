@@ -92,31 +92,23 @@ $ git branch
 
 Use `git branch -d <branch_name>` to delete it locally, `git push <remote_name> --delete <branch_name>` to delete it remotely:
 
-
+1) Delete the branch locally
 ```powershell
-
+$ git branch -d old-branch
+Deleted branch old-branch (was eeb9376)
 ```
-
+2) Delete the branch on remote
 ```powershell
-
-```
----
-
-
-## ** ** :
-
-```powershell
-
+$ git push origin --delete old-branch
+To git@github.com:username/my-repo.git
+ - [deleted]         old-branch
 ```
 ---
-## ** ** :
 
+
+## **Clone branch** :
+To git clone a branch only `(my-branch)`:
 ```powershell
-
+git clone -b my-branch git@github.com:my-user/repo.git repo-my-branch
 ```
----
-## ** ** :
 
-```powershell
-
-```
