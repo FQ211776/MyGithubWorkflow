@@ -87,6 +87,14 @@ $ git branch
   branch-1
  $ git checkout branch-1
 ```
+
+## **Make local branch track remote branch** :
+Use `git branch -u <remote-name> <local-name>`
+EXAMPLE: make local branch `foo` track `origin/foo`
+
+```powershell
+$ git branch -u origin/foo foo
+```
 ---
 ## **Delete branch locally and on remote** :
 *you must use -D instead of -d of you want to force-delete an unmerged branch*
