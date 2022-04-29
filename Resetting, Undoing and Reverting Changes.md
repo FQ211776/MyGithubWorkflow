@@ -55,3 +55,5 @@ Example: Revert file.txt the way it was before the previous commit:
  git checkout HEAD~1 -- file.txt
 ```
 ---
+
+zmd
