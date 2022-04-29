@@ -68,6 +68,14 @@ $ git config master.merge refs/heads/master
  git remote -v
 ```
 ---
+
+## **Checkout file from branch** :
+
+```powershell
+git checkout <branch-name> -- path/to/file.txt
+
+```
+
 ## **Fetch remote branch** :
 If you have a copy of a repository that doesn't include all branches, you can fetch a branch individually:
 
