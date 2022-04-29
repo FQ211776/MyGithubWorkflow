@@ -108,6 +108,13 @@ To git@github.com:username/my-repo.git
 
 ## **Clone branch** :
 To git clone a branch only `(my-branch)`:
+
+This is useful if you need to keep multiple branches of a single repo.
+
+To git clone a remote branch, use `git clone -b <branch-name> <url> <folder_name>`:
+
+For example, to clone this branch into a new folder called repo-my-branch, do:
+
 ```powershell
 git clone -b my-branch git@github.com:my-user/repo.git repo-my-branch
 ```
