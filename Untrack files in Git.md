@@ -2,13 +2,13 @@
 
 **Description :**  As far as I know, there are at least 2 ways to untrack a file using git:
 
-**Remove file from the repository but keep it in your working directory** :
+## **Remove file from the repository but keep it in your working directory** :
 
 ```powershell
 git rm --cached your_filename
 ```
 
-**Make git not notice changes to a file** :
+## **Make git not notice changes to a file** :
 This will keep the file in the repository, but it won't commit changes to it. It will stay unchanged in the repository:
 
 ```powershell
