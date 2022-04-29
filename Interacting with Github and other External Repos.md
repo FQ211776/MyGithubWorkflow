@@ -85,6 +85,7 @@ From github.com:username/my-repo
 $ git branch
 * master
   branch-1
+ $ git checkout branch-1
 ```
 ---
 ## **Delete branch locally and on remote** :
