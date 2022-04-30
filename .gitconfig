@@ -1,16 +1,252 @@
+###############################################################################
 [user]
     name = Roberto Flores
     email = fq211776@alumno.udb.edu.sv
-	signingkey = ????
+	signingKey = ????
+###############################################################################
 [commit]
 	gpgsign = true
+###############################################################################
+[init]
+	defaultBranch = production
+###############################################################################
+[branch]
+	autosetupmerge = true
+###############################################################################
+[advice]
+	detachedHead = false
+###############################################################################
+[interactive]
+	diffFilter = diff-so-fancy --patch
+###############################################################################
+[color]
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	ui = true
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+    branch = magenta
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+###############################################################################
 [credential]
-	helper = manager-core
+#	helper = manager-core
+    helper = cache --timeout=604800
+###############################################################################
+# Use neovim as git diff and merge tool
+[diff]
+  tool = nvimdiff
+ [difftool]
+    prompt = false
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+	path =
+###############################################################################
+[merge]
+    tool = nvimdiff
+    log = true
+[mergetool]
+    prompt = true
+[mergetool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+###############################################################################
 [core]
-    excludesfile = ~/.gitignore
-    editor = nvim
+	editor = nvim
 	longpaths = true
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    # Treat spaces before tabs, lines that are indented with 8 or more spaces, and
+    # all kinds of trailing whitespace as an error.
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of
+    # a line
+    whitespace = space-before-tab,tab-in-indent,trailing-space,tabwidth=4
+
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+###############################################################################
+[push]
+	default = current
+###############################################################################
 [tag]
 	forceSignAnnotated = true
+###############################################################################
+[hub]
+  protocol = https
+[github]
+	user = FQ211776
+###############################################################################
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = warn
+###############################################################################
 [ghq]
-  root = E:\_0_\
+ 	root = "E:\\_0_"
+[ghq "https://git.jetbrains.space/silverblue/hist/DotFiles.git"]
+	vcs = git
+	root = /var/opt/workspace
+###############################################################################
+[gpg]
+	program = C:\\Program Files\\Git\\usr\\bin\\gpg.exe
+###############################################################################
+[fetch]
+	prune = true
+###############################################################################
+[url "https://github.com/"]
+	insteadOf = git@github.com:
+[url "https://"]
+	insteadOf = git://
+# URL shorthands
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+    insteadOf = "github:"
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"
+###############################################################################
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+###############################################################################
+[alias]
+###List current aliases
+    aliases = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ / | grep -v ^'alias '"
+    me = "!git config --get-regexp ^user\\. | sed -e s/^user\\.// -e s/\\ /\\ =\\ / | grep -v ^'user '"
+####git add with query
+    a = "!git status --short | peco | awk '{print $2}' | xargs git add"
+####find a specific word in a commit and then show a diff
+    find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+####allow find a commit with query and show after select a diff
+    df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+    findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+    findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+####show hist
+    hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+####show hist with modified files
+    llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+####push <any> current branch
+    publish = "!git push origin $(git branch-name)"
+    ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+####pull <any> current branch
+    pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+####show local branchs
+    br = branch
+####show local and remote branchs
+    ba = branch -a
+####Open current repo in the browser
+    open = "!hub browse"
+####show status with just the most relevant info
+    s = status -s -b
+####log
+    # View abbreviated SHA, description, and history graph of the latest 50 commits
+    l = log --pretty=oneline -n 50 --graph --abbrev-commit
+    lg = log --oneline --decorate --all --graph
+####git add everithing
+    a = add .
+    cm = commit -m
+####creating a branch before you try a merge or a rebase is like saving your game before you battle the boss.
+    #git save
+    #This adds all changes, including untracked files, to the staging area and then commits with a SAVEPOINT message. When an emergency hits and I need to quickly switch context, I’ll just git save and check out to a new branch to do whatever I am tasked to do. When I’m done, I’ll switch back to my original branch, git undo(see below), and resume work. It’s easily configured with:
+    save = !git add -A && git commit -v -m 'SAVEPOINT'
+    #git wip
+    wip = !git add -u && git commit -m 'WIP'
+    #wip is similar to save. It stages all tracked changes and then commits with a WIP message. So yes, it offers the same features as above but leaves untracked files unstaged, a significant difference. Like above, when done with the extra work, I’ll switch back, git undo, and resume. Set it up with:
+    #git undo
+    #This alias allows me to quickly resume work after a save or wip. It undoes the last commit but keeps its changes, with files unstaged. It can also be used in other circumstances (for those, however, I have a functionally identical r1 alias at hand). Configure with:
+    undo = reset HEAD~1 --mixed
+    #git wipe
+    #This is a special, use-with-caution one. It adds changes in the working tree to a WIPE SAVEPOINT commit, then it wipes the commit. At that point, the working tree is clean, but I can still go back to that work if the need arises (via reflog). Seldom used, this wipe comes in handy when I have some experimental code that is not going into production and yet, I want to keep it around. Set it up with:
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' --no-verify && git reset HEAD~1 --hard
+####some abreviations
+    # View the current working tree status using the short form
+    s = status -s
+    st = status -s
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    #d = diff
+    co = checkout
+    ci = commit
+    ca = commit -a
+####`git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+####Pull in remote changes for the current repository and all its submodules
+    p = !"git pull; git submodule foreach git pull origin master"
+####Clone a repository including all submodules
+    c = clone --recursive
+####Commit all changes
+    ca = !git add -A && git commit -av
+####Switch to a branch, but don't create it
+    co = checkout
+####Switch to a branch, creating it if necessary
+    go = checkout -B
+####Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+####Credit an author on the latest commit
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+####Interactive rebase with the given number of latest commits
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
+####Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
+####Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
+####Find commits by source code
+    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+####Find commits by commit message
+    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+####Remove branches that have already been merged with master
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+####Undo Commit; leaves files. Only for non-public commits
+    uncommit = reset --soft HEAD^
+#
+#git branch --merged master lists branches merged into master
+#git branch --merged lists branches merged into HEAD (i.e. tip of current branch)
+#git branch --no-merged lists branches that have not been merged
+#By default this applies to only the local branches.
+#The -a flag will show both local and remote branches,
+#and the -r flag shows only the remote branches.
+    bm = branch --merged
+    bn = branch --no-merged
+####check signature
+	logs = log --show-signature
+####danger danger
+	rh = reset --hard
+####Basically what he does is to add all changes to the last commit without changing the commit message.
+    rename = !git add -A && git commit -a --amend
+#
+  type = cat-file -t
+  dump = cat-file -p
+   # edit conflicted file on merge
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  # add conflicted file on merge
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
