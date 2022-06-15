@@ -2,7 +2,7 @@
 [user]
     name = Roberto Flores
     email = fq211776@alumno.udb.edu.sv
-	signingKey = ????
+    signingKey = C978DCC3F11727B668F628CCA880A8769244686F
 ###############################################################################
 [commit]
 	gpgsign = true
@@ -52,21 +52,24 @@
 ###############################################################################
 # Use neovim as git diff and merge tool
 [diff]
-  tool = nvimdiff
- [difftool]
+	tool = meld
+#[diff]
+#  tool = nvimdiff
+[difftool]
     prompt = false
-[difftool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
-	path =
+#[difftool "nvimdiff"]
+#	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+#	path =
 ###############################################################################
 [merge]
-    tool = nvimdiff
+ #   tool = nvimdiff
+	tool = meld
     log = true
 [mergetool]
     prompt = true
-[mergetool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+#[mergetool "nvimdiff"]
+#	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+#	trustExitCode = true
 ###############################################################################
 [core]
 	editor = nvim
@@ -108,7 +111,8 @@
 	root = /var/opt/workspace
 ###############################################################################
 [gpg]
-	program = C:\\Program Files\\Git\\usr\\bin\\gpg.exe
+	program = /usr/bin/gpg
+#	program = C:\\Program Files\\Git\\usr\\bin\\gpg.exe
 ###############################################################################
 [fetch]
 	prune = true
@@ -250,3 +254,4 @@
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
