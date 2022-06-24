@@ -20,7 +20,10 @@ clip < ~/.ssh/id_ed25519.pub
 ```
 
 **[Direct link to Add my SSH Key to GitHub](https://github.com/settings/keys)**
+
 **[Direct link to Add my SSH Key to SourceHut](https://meta.sr.ht/keys)**
+
+**[Direct link to Add my SSH Key to Bitbucket](https://bitbucket.org/account/settings/ssh-keys/)**
 
 
 
